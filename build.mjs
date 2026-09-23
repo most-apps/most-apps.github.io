@@ -69,9 +69,13 @@ async function describe(repo) {
   try {
     const res = await fetch(url);
     const m = readMeta(await res.text());
+    const title = m.title || app.title;
+    // Descriptions often open with the app's name ("Water Bingo — a caller…"); the card already shows it.
+    const lead = new RegExp(`^${title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*[—–:-]\\s*`, "i");
+    const description = (m.description || app.description).replace(lead, "");
     Object.assign(app, {
-      title: m.title || app.title,
-      description: m.description || app.description,
+      title,
+      description: description.charAt(0).toUpperCase() + description.slice(1),
       color: /^#[0-9a-f]{3,8}$/i.test(m.themeColor ?? "") ? m.themeColor : undefined,
       icon: m.icon && new URL(m.icon, url).href,
     });
