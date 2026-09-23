@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MOST Apps</title>
+    <meta name="description" content="Web apps from the Museum of Science & Technology (MOST), Syracuse." />
+    <meta name="theme-color" content="#16213d" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316213d'/%3E%3Cg fill='%23fff'%3E%3Crect x='14' y='14' width='15' height='15' rx='3'/%3E%3Crect x='35' y='14' width='15' height='15' rx='3'/%3E%3Crect x='14' y='35' width='15' height='15' rx='3'/%3E%3Crect x='35' y='35' width='15' height='15' rx='3' opacity='.55'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #16213d;
+        --muted: #56607a;
+        --bg: #f3f5f9;
+        --card: #ffffff;
+        --line: #dfe3ec;
+        --hero: #16213d;
+        --hero-ink: #ffffff;
+        --hero-muted: #b9c3dc;
+        --accent: #0257b7;
+        --shadow: 0 1px 2px rgb(22 33 61 / 6%), 0 8px 24px rgb(22 33 61 / 8%);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ink: #eef1f8;
+          --muted: #a4adc2;
+          --bg: #0d1220;
+          --card: #161d30;
+          --line: #263049;
+          --hero: #0a0f1c;
+          --hero-muted: #8f9bb8;
+          --accent: #6ea8ff;
+          --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 8px 24px rgb(0 0 0 / 30%);
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font: 16px/1.55 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: var(--bg);
+      }
+      .hero {
+        background:
+          radial-gradient(60rem 20rem at 85% -20%, rgb(2 87 183 / 45%), transparent 70%),
+          radial-gradient(40rem 18rem at -10% 120%, rgb(30 114 45 / 35%), transparent 70%),
+          var(--hero);
+        color: var(--hero-ink);
+      }
+      .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1rem; }
+      .hero .wrap { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+      .eyebrow {
+        margin: 0 0 .5rem;
+        font-size: .8rem;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--hero-muted);
+      }
+      h1 { margin: 0; font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+      .lede { margin: .75rem 0 0; max-width: 36rem; color: var(--hero-muted); font-size: 1.1rem; }
+      main .wrap { padding-top: 2.5rem; padding-bottom: 3rem; }
+      .grid {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 18.5rem), 1fr));
+      }
+      .card {
+        --app: var(--accent);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-top: 4px solid var(--app);
+        border-radius: 1rem;
+        box-shadow: var(--shadow);
+        color: inherit;
+        text-decoration: none;
+        transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      }
+      .card:hover, .card:focus-visible {
+        transform: translateY(-3px);
+        border-color: var(--app);
+        box-shadow: var(--shadow), 0 12px 32px rgb(22 33 61 / 12%);
+      }
+      .card:focus-visible { outline: 3px solid var(--app); outline-offset: 3px; }
+      .shot { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 1px solid var(--line); }
+      .card-body { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem 1.25rem 0; }
+      .icon {
+        flex: none;
+        width: 3.5rem;
+        height: 3.5rem;
+        padding: .6rem;
+        border-radius: .9rem;
+        background: color-mix(in srgb, var(--app) 14%, var(--card));
+        object-fit: contain;
+      }
+      .icon-letter {
+        display: grid;
+        place-items: center;
+        padding: 0;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--app);
+      }
+      .card h2 { margin: .15rem 0 .35rem; font-size: 1.2rem; font-weight: 700; letter-spacing: -.01em; }
+      .card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: .95rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .open {
+        margin-top: auto;
+        padding: 1rem 1.25rem 1.25rem;
+        font-weight: 700;
+        font-size: .95rem;
+        color: var(--app);
+      }
+      @media (prefers-color-scheme: dark) {
+        .open, .icon-letter { color: color-mix(in srgb, var(--app) 55%, white); }
+      }
+      .card:hover .open span, .card:focus-visible .open span { margin-left: .25rem; }
+      .open span { transition: margin .15s ease; }
+      .empty { color: var(--muted); }
+      footer { border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+      footer .wrap { padding-top: 1.25rem; padding-bottom: 2rem; }
+      footer a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Museum of Science &amp; Technology · Syracuse</p>
+        <h1>MOST Apps</h1>
+        <p class="lede">Games and tools for exhibits, events and classrooms.</p>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+    <!-- APPS -->
+      </div>
+    </main>
+    <footer>
+      <div class="wrap">
+        <a href="https://github.com/most-apps">Source on GitHub</a>
+      </div>
+    </footer>
+  </body>
+</html>
