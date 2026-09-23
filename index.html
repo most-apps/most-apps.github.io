@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MOST Apps</title>
+    <style>
+      :root { --ink: #1a1f2b; --muted: #5b6475; --bg: #f6f7f9; --card: #fff; --line: #dde1e8; --accent: #0257b7; }
+      @media (prefers-color-scheme: dark) {
+        :root { --ink: #eef1f6; --muted: #a3acbb; --bg: #12151b; --card: #1b1f27; --line: #2c323d; --accent: #6ea8ff; }
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); }
+      main { max-width: 40rem; margin: 0 auto; padding: 3rem 1rem; }
+      h1 { margin: 0 0 .25rem; font-size: 1.75rem; }
+      p.lede { margin: 0 0 2rem; color: var(--muted); }
+      ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+      a.app { display: block; padding: 1rem 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: .75rem; color: inherit; text-decoration: none; }
+      a.app:hover, a.app:focus-visible { border-color: var(--accent); }
+      a.app strong { display: block; color: var(--accent); font-size: 1.1rem; }
+      a.app span { color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>MOST Apps</h1>
+      <p class="lede">Web apps from the Museum of Science &amp; Technology, Syracuse.</p>
+      <ul>
+        <li>
+          <a class="app" href="/waterbingo/">
+            <strong>Water Bingo</strong>
+            <span>Picture bingo about how Onondaga County cleans its water, with Onondaga County WEP.</span>
+          </a>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>
